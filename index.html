@@ -18,20 +18,24 @@
 
     for (let i=1; i<=nMax; i++) {
       if (i == 1) {
-         n[i].prime = 0;
+         n[i].prime     = 0;
+         n[i].composite = 0;
       }
       else {
         if (! ('prime' in n[i])) {
-          n[i].prime = 1;
+          n[i].prime     = 1;
+          n[i].composite = 0;
         }
         for (let p=i*2; p<=nMax; p+=i) {
-          n[p].prime = 0;
+          n[p].prime     = 0;
+          n[p].composite = 1;
         }
       }
     }
  
     let tab = document.getElementById('zahlen');
-    let cntPrime = 0;
+    let cntPrime     = 0;
+    let cntComposite = 0;
     for (let i=1; i<=nMax; i++) {
 
        let tdN  = elem('td');
@@ -39,15 +43,21 @@
 
        let tdPrime = elem('td');
        if (n[i].prime) {
-
          cntPrime ++;
          tdPrime.innerHTML = cntPrime + '. Primzahl';
-
        }
+
+       let tdComposite = elem('td');
+       if (n[i].composite) {
+         cntComposite ++;
+         tdComposite.innerHTML = cntComposite + '. zusammengesetzte Zahl';
+       }
+
        let tr=elem('tr');
 
        tr.appendChild(tdN);
        tr.appendChild(tdPrime);
+       tr.appendChild(tdComposite);
        tab.appendChild(tr);
 
     }
