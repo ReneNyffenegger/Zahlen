@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <title>Zahlen</title>
+<script type="text/javascript">
+  function elem(el) {
+    return document.createElement(el);
+  }
+  function main() {
+
+    let n = [];
+
+    let nMax = 1000;
+    for (let i=1; i<=nMax; i++) {
+      n[i] = {};
+    }
+
+    for (let i=1; i<=nMax; i++) {
+      if (i == 1) {
+         n[i].prime = 0;
+      }
+      else {
+        if (! ('prime' in n[i])) {
+          n[i].prime = 1;
+        }
+        for (let p=i*2; p<=nMax; p+=i) {
+          n[p].prime = 0;
+        }
+      }
+    }
+ 
+    let tab = document.getElementById('zahlen');
+    let cntPrime = 0;
+    for (let i=1; i<=nMax; i++) {
+
+       let tdN  = elem('td');
+       tdN.innerHTML = i;
+
+       let tdPrime = elem('td');
+       if (n[i].prime) {
+
+         cntPrime ++;
+         tdPrime.innerHTML = cntPrime + '. Primzahl';
+
+       }
+       let tr=elem('tr');
+
+       tr.appendChild(tdN);
+       tr.appendChild(tdPrime);
+       tab.appendChild(tr);
+
+    }
+
+    
+
+
+  }
+</script>
+</head>
+<body onload='main()'>
+
+  <table id='zahlen'></table>
+
+</body>
+</html>
