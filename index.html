@@ -9,9 +9,11 @@
   }
   function main() {
 
+    console.time("main")
+
     let n = [];
 
-    let nMax = 1000;
+    let nMax = 10000;
     for (let i=1; i<=nMax; i++) {
       n[i] = {};
     }
@@ -39,18 +41,18 @@
     for (let i=1; i<=nMax; i++) {
 
        let tdN  = elem('td');
-       tdN.innerHTML = i;
+       tdN.textContent = i;
 
        let tdPrime = elem('td');
        if (n[i].prime) {
          cntPrime ++;
-         tdPrime.innerHTML = cntPrime + '. Primzahl';
+         tdPrime.textContent = cntPrime + '. Primzahl';
        }
 
        let tdComposite = elem('td');
        if (n[i].composite) {
          cntComposite ++;
-         tdComposite.innerHTML = cntComposite + '. zusammengesetzte Zahl';
+         tdComposite.textContent = cntComposite + '. zusammengesetzte Zahl';
        }
 
        let tr=elem('tr');
@@ -62,8 +64,7 @@
 
     }
 
-    
-
+    console.timeEnd("main")
 
   }
 </script>
